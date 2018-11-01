@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +17,12 @@ namespace HMS
         static OracleCommand comm;
         static OracleDataAdapter da;
         static DataTable dataTable;
+        static OracleParameter op;
         private static readonly string connectionString = "DATA SOURCE=DESKTOP-B2NCL0K:1521/XE;PERSIST SECURITY INFO=True;USER ID=DB;Password=password";
 
-        public static Boolean login(String type, String id) {
+        // This function takes an id and login type and validates login
+        public static Boolean login(String type, String id)
+        {
             try
             {
                 conn = new OracleConnection(connectionString);
@@ -43,7 +47,7 @@ namespace HMS
                 OracleDataAdapter dataAdapter = new OracleDataAdapter(comm.CommandText, conn);
                 dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
-                
+
             }
             catch (Exception ex)
             {
@@ -54,28 +58,64 @@ namespace HMS
                 conn.Dispose();
             }
             foreach (DataRow dr in dataTable.Rows)
+            {
+                if (dr[0].ToString() == id)
                 {
-                    if (dr[0].ToString() == id)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
-                return false;
+            }
+            return false;
         }
         // This function takes an sql read command and returns a DataTable containing the result
-         
-        public static DataTable read(String command) { 
-            conn = new OracleConnection(connectionString);
-            conn.Open();
-            comm = new OracleCommand
+
+        public static DataTable read(String command)
+        {
+            try
             {
-                CommandText = command
-            };
-            OracleDataAdapter dataAdapter = new OracleDataAdapter(comm.CommandText, conn);
-            dataTable = new DataTable();
-            dataAdapter.Fill(dataTable);
-            conn.Dispose();
+                conn = new OracleConnection(connectionString);
+                conn.Open();
+                comm = new OracleCommand
+                {
+                    CommandText = command
+                };
+                OracleDataAdapter dataAdapter = new OracleDataAdapter(comm.CommandText, conn);
+                dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+            finally { conn.Dispose(); }
             return dataTable;
+        }
+
+        public static void insert(String command)
+        {
+            try {
+                conn = new OracleConnection(connectionString);
+                conn.Open();
+                comm = new OracleCommand { CommandText = command };
+                comm.Connection = conn;
+                comm.CommandType = CommandType.Text;
+                comm.ExecuteNonQuery();
+                MessageBox.Show("Insertion successfull");
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+            finally { conn.Dispose(); }
+        }
+
+        public static void discharge(String pid, String ward)
+        {
+            try {
+                conn = new OracleConnection(connectionString);
+                conn.Open();
+                comm = new OracleCommand("discharge", conn);
+                comm.CommandText = "discharge";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("pid", OracleDbType.Varchar2).Value = pid;
+                comm.Parameters.Add("wames", OracleDbType.Varchar2).Value = ward;
+                comm.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+            finally { conn.Dispose(); }
         }
     }
 }

@@ -31,6 +31,7 @@
             this.lbl_nurse_name = new System.Windows.Forms.Label();
             this.lbl_nurse_ward = new System.Windows.Forms.Label();
             this.grid_patient_ward = new System.Windows.Forms.DataGridView();
+            this.btn_discharge = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid_patient_ward)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,14 +60,25 @@
             this.grid_patient_ward.Location = new System.Drawing.Point(12, 166);
             this.grid_patient_ward.Name = "grid_patient_ward";
             this.grid_patient_ward.RowTemplate.Height = 28;
-            this.grid_patient_ward.Size = new System.Drawing.Size(1252, 289);
+            this.grid_patient_ward.Size = new System.Drawing.Size(664, 289);
             this.grid_patient_ward.TabIndex = 2;
+            // 
+            // btn_discharge
+            // 
+            this.btn_discharge.Location = new System.Drawing.Point(537, 102);
+            this.btn_discharge.Name = "btn_discharge";
+            this.btn_discharge.Size = new System.Drawing.Size(139, 58);
+            this.btn_discharge.TabIndex = 3;
+            this.btn_discharge.Text = "Discharge";
+            this.btn_discharge.UseVisualStyleBackColor = true;
+            this.btn_discharge.Click += new System.EventHandler(this.btn_discharge_Click);
             // 
             // ui_nurse_landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 467);
+            this.ClientSize = new System.Drawing.Size(687, 467);
+            this.Controls.Add(this.btn_discharge);
             this.Controls.Add(this.grid_patient_ward);
             this.Controls.Add(this.lbl_nurse_ward);
             this.Controls.Add(this.lbl_nurse_name);
@@ -83,5 +95,6 @@
         private System.Windows.Forms.Label lbl_nurse_name;
         private System.Windows.Forms.Label lbl_nurse_ward;
         private System.Windows.Forms.DataGridView grid_patient_ward;
+        private System.Windows.Forms.Button btn_discharge;
     }
 }

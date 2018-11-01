@@ -28,7 +28,7 @@ namespace HMS
 
         private void btn_new_patient_Click(object sender, EventArgs e)
         {
-
+            new ui_add_patient(r_id, name).Show();
         }
 
         void loadPatients()

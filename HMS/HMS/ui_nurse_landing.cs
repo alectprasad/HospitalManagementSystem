@@ -14,6 +14,22 @@ namespace HMS
     {
         String n_id, name, ward;
         DataTable dataTable;
+
+        private void btn_discharge_Click(object sender, EventArgs e)
+        {
+            if (grid_patient_ward.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = grid_patient_ward.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = grid_patient_ward.Rows[selectedrowindex];
+                string dischargedPatient = Convert.ToString(selectedRow.Cells["ID"].Value);
+                DialogResult dialogResult = MessageBox.Show("Discharge " + dischargedPatient + "?", "Confirm discharge", MessageBoxButtons.OKCancel);
+                if (dialogResult == DialogResult.OK)
+                {
+                    DBhelper.discharge(dischargedPatient, ward);
+                }
+            }
+        }
+
         public ui_nurse_landing(String id)
         {
             InitializeComponent();
@@ -29,8 +45,13 @@ namespace HMS
         }
         void loadPatients()
         {
-            dataTable = DBhelper.read("select * from patient where wname='" + ward + "'");
-            grid_patient_ward.DataSource = dataTable;
+            dataTable = DBhelper.read("select patient.P_ID as ID,PNAME as Name,AGE as Age,SYMPTOMS as Symptoms,NUM_OF_DAYS_ADMITTED as Days_admitted, STATUS as status " +
+                                      "from patient,ward_table,ward " +
+                                      "where patient.p_id=ward_table.p_id and ward_table.wname=ward.wname and ward.wname='" + ward + "'");
+            if (dataTable != null)
+            {
+                grid_patient_ward.DataSource = dataTable;
+            }
         }
     }
 }
