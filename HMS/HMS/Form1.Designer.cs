@@ -53,6 +53,7 @@
             this.btn_login_doctor.TabIndex = 1;
             this.btn_login_doctor.Text = "Doctor";
             this.btn_login_doctor.UseVisualStyleBackColor = true;
+            this.btn_login_doctor.Click += new System.EventHandler(this.btn_login_doctor_Click);
             // 
             // btn_login_reception
             // 
@@ -60,8 +61,9 @@
             this.btn_login_reception.Name = "btn_login_reception";
             this.btn_login_reception.Size = new System.Drawing.Size(139, 47);
             this.btn_login_reception.TabIndex = 2;
-            this.btn_login_reception.Text = "Reception";
+            this.btn_login_reception.Text = "Receptionist";
             this.btn_login_reception.UseVisualStyleBackColor = true;
+            this.btn_login_reception.Click += new System.EventHandler(this.btn_login_reception_Click);
             // 
             // btn_login_nurse
             // 
@@ -71,6 +73,7 @@
             this.btn_login_nurse.TabIndex = 3;
             this.btn_login_nurse.Text = "Nurse";
             this.btn_login_nurse.UseVisualStyleBackColor = true;
+            this.btn_login_nurse.Click += new System.EventHandler(this.btn_login_nurse_Click);
             // 
             // ui_landing
             // 

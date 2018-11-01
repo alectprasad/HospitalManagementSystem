@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.ManagedDataAccess.Client;
-using Oracle.ManagedDataAccess.Types;
+
 
 namespace HMS
 {
@@ -22,6 +21,21 @@ namespace HMS
         private void label1_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void btn_login_reception_Click(object sender, EventArgs e)
+        {
+            new ui_login((sender as Button).Text).Show();
+        }
+
+        private void btn_login_doctor_Click(object sender, EventArgs e)
+        {
+            new ui_login((sender as Button).Text).Show();
+        }
+
+        private void btn_login_nurse_Click(object sender, EventArgs e)
+        {
+            new ui_login((sender as Button).Text).Show();
         }
     }
 }
