@@ -46,6 +46,7 @@
             this.lbl_r_id = new System.Windows.Forms.Label();
             this.lbl_pid = new System.Windows.Forms.Label();
             this.tb_pid = new System.Windows.Forms.TextBox();
+            this.list_dept = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -154,7 +155,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(57, 9);
+            this.label7.Location = new System.Drawing.Point(46, 25);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(351, 55);
             this.label7.TabIndex = 12;
@@ -206,11 +207,22 @@
             this.tb_pid.TabIndex = 17;
             this.tb_pid.TextChanged += new System.EventHandler(this.tb_pid_TextChanged);
             // 
+            // list_dept
+            // 
+            this.list_dept.FormattingEnabled = true;
+            this.list_dept.ItemHeight = 20;
+            this.list_dept.Location = new System.Drawing.Point(596, 138);
+            this.list_dept.Name = "list_dept";
+            this.list_dept.Size = new System.Drawing.Size(192, 144);
+            this.list_dept.TabIndex = 18;
+            this.list_dept.SelectedIndexChanged += new System.EventHandler(this.list_dept_SelectedIndexChanged);
+            // 
             // ui_add_patient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 542);
+            this.Controls.Add(this.list_dept);
             this.Controls.Add(this.tb_pid);
             this.Controls.Add(this.lbl_pid);
             this.Controls.Add(this.lbl_r_id);
@@ -256,5 +268,6 @@
         private System.Windows.Forms.Label lbl_r_id;
         private System.Windows.Forms.Label lbl_pid;
         private System.Windows.Forms.TextBox tb_pid;
+        private System.Windows.Forms.ListBox list_dept;
     }
 }

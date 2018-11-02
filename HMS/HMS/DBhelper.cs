@@ -115,7 +115,49 @@ namespace HMS
                 comm.ExecuteNonQuery();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
-            finally { conn.Dispose(); }
+            finally { conn.Dispose();
+                MessageBox.Show("success"); }
+        }
+
+        public static void discharge_doc(String pid, String dept)
+        {
+            try
+            {
+                conn = new OracleConnection(connectionString);
+                conn.Open();
+                comm = new OracleCommand("discharge_doc", conn);
+                comm.CommandText = "discharge_doc";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("pid", OracleDbType.Varchar2).Value = pid;
+                comm.Parameters.Add("dept", OracleDbType.Varchar2).Value = dept;
+                comm.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+            finally
+            {
+                conn.Dispose();
+                MessageBox.Show("success");
+            }
+        }
+
+        public static void assign_doc(String pid)
+        {
+            try
+            {
+                conn = new OracleConnection(connectionString);
+                conn.Open();
+                comm = new OracleCommand("assign_doctor", conn);
+                comm.CommandText = "assign_doctor";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add("pid", OracleDbType.Varchar2).Value = pid;
+                comm.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+            finally
+            {
+                conn.Dispose();
+                MessageBox.Show("success");
+            }
         }
     }
 }

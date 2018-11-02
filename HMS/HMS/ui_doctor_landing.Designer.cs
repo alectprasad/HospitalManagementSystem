@@ -31,6 +31,7 @@
             this.lbl_doc_name = new System.Windows.Forms.Label();
             this.lbl_doc_dept = new System.Windows.Forms.Label();
             this.grid_patients_dept = new System.Windows.Forms.DataGridView();
+            this.btn_discharge_doc = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid_patients_dept)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,11 +63,22 @@
             this.grid_patients_dept.Size = new System.Drawing.Size(776, 291);
             this.grid_patients_dept.TabIndex = 2;
             // 
+            // btn_discharge_doc
+            // 
+            this.btn_discharge_doc.Location = new System.Drawing.Point(668, 74);
+            this.btn_discharge_doc.Name = "btn_discharge_doc";
+            this.btn_discharge_doc.Size = new System.Drawing.Size(120, 50);
+            this.btn_discharge_doc.TabIndex = 3;
+            this.btn_discharge_doc.Text = "Discharge";
+            this.btn_discharge_doc.UseVisualStyleBackColor = true;
+            this.btn_discharge_doc.Click += new System.EventHandler(this.btn_discharge_doc_Click);
+            // 
             // ui_doctor_landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_discharge_doc);
             this.Controls.Add(this.grid_patients_dept);
             this.Controls.Add(this.lbl_doc_dept);
             this.Controls.Add(this.lbl_doc_name);
@@ -83,5 +95,6 @@
         private System.Windows.Forms.Label lbl_doc_name;
         private System.Windows.Forms.Label lbl_doc_dept;
         private System.Windows.Forms.DataGridView grid_patients_dept;
+        private System.Windows.Forms.Button btn_discharge_doc;
     }
 }

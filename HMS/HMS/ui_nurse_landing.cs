@@ -26,6 +26,7 @@ namespace HMS
                 if (dialogResult == DialogResult.OK)
                 {
                     DBhelper.discharge(dischargedPatient, ward);
+                    loadPatients();
                 }
             }
         }
@@ -47,7 +48,7 @@ namespace HMS
         {
             dataTable = DBhelper.read("select patient.P_ID as ID,PNAME as Name,AGE as Age,SYMPTOMS as Symptoms,NUM_OF_DAYS_ADMITTED as Days_admitted, STATUS as status " +
                                       "from patient,ward_table,ward " +
-                                      "where patient.p_id=ward_table.p_id and ward_table.wname=ward.wname and ward.wname='" + ward + "'");
+                                      "where patient.p_id=ward_table.p_id and ward_table.wname=ward.wname and ward.wname='" + ward + "' and status='admitted'");
             if (dataTable != null)
             {
                 grid_patient_ward.DataSource = dataTable;

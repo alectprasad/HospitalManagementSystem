@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.lbl_recep_name = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grid_patient_reception = new System.Windows.Forms.DataGridView();
             this.btn_new_patient = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_patient_reception)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_recep_name
@@ -44,14 +44,14 @@
             this.lbl_recep_name.TabIndex = 0;
             this.lbl_recep_name.Text = "name";
             // 
-            // dataGridView1
+            // grid_patient_reception
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 182);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(771, 256);
-            this.dataGridView1.TabIndex = 2;
+            this.grid_patient_reception.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_patient_reception.Location = new System.Drawing.Point(17, 182);
+            this.grid_patient_reception.Name = "grid_patient_reception";
+            this.grid_patient_reception.RowTemplate.Height = 28;
+            this.grid_patient_reception.Size = new System.Drawing.Size(771, 256);
+            this.grid_patient_reception.TabIndex = 2;
             // 
             // btn_new_patient
             // 
@@ -69,11 +69,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btn_new_patient);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.grid_patient_reception);
             this.Controls.Add(this.lbl_recep_name);
             this.Name = "ui_reception_landing";
             this.Text = "ui_reception_landing";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_patient_reception)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,7 +82,7 @@
         #endregion
 
         private System.Windows.Forms.Label lbl_recep_name;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView grid_patient_reception;
         private System.Windows.Forms.Button btn_new_patient;
     }
 }

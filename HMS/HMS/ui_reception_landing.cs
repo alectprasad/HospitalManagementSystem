@@ -33,7 +33,13 @@ namespace HMS
 
         void loadPatients()
         {
-            //TODO
+            dataTable = DBhelper.read("select patient.p_id as ID,pname as NAME,age,symptoms,occupation,num_of_days_admitted as STAY,appoint_date as APPOINTMENT_DATE,wname as WARD,status " +
+                                      "from patient,appointment,ward_table " +
+                                      "where patient.p_id=appointment.p_id and patient.p_id=ward_table.p_id and r_id='" + r_id + "'");
+            if (dataTable != null)
+            {
+                grid_patient_reception.DataSource = dataTable;
+            }
         }
     }
 }

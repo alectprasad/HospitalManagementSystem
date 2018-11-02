@@ -21,6 +21,9 @@ namespace HMS
             lbl_r_id.Text = r_id;
             this.Text = "New Patient";
             enableAdd();
+            DataTable dataTable = DBhelper.read("select deptname from department");
+            list_dept.DataSource = dataTable;
+            list_dept.DisplayMember = "DEPTNAME";
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
@@ -36,7 +39,8 @@ namespace HMS
                                      || String.IsNullOrWhiteSpace(tb_occupation.Text)
                                      || String.IsNullOrWhiteSpace(tb_relation.Text)
                                      || String.IsNullOrWhiteSpace(tb_symptom.Text)
-                                     || String.IsNullOrWhiteSpace(tb_pid.Text));
+                                     || String.IsNullOrWhiteSpace(tb_pid.Text)
+                                     || list_dept.SelectedIndex == -1);
         }
 
         Boolean validate() {
@@ -90,22 +94,31 @@ namespace HMS
             enableAdd();
         }
 
+        private void list_dept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            enableAdd();
+        }
+
         private void btn_add_patient_Click(object sender, EventArgs e)
         {
             if (validate())
             {
+                DataRowView dataRowView = (DataRowView)list_dept.SelectedItem;
+                String dept = dataRowView["DEPTNAME"].ToString();
                 DBhelper.insert("insert into patient values('" + tb_pid.Text + "'," +
                                 "'" + tb_name.Text + "'" +
                                 "," + tb_age.Text +"," +
                                 "'" + tb_symptom.Text + "'," +
                                 "'" + tb_occupation.Text + "'," +
-                                "0, 'admitted')");
+                                "0, 'admitted'," +
+                                "'" + dept + "')");
                 DBhelper.insert("insert into family_members values('" + tb_pid.Text + "'," +
                                 "'" + tb_family.Text + "'," +
                                 "'" + tb_relation.Text + "')");
                 DBhelper.insert("insert into appointment values ('" + tb_pid.Text + "'," +
                                 "'" + r_id + "'," +
                                 "date '" + DateTime.Now.ToString("yyyy-MM-dd") + "')");
+                DBhelper.assign_doc(tb_pid.Text);
             }
         }
     }
