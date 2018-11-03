@@ -32,6 +32,8 @@
             this.lbl_nurse_ward = new System.Windows.Forms.Label();
             this.grid_patient_ward = new System.Windows.Forms.DataGridView();
             this.btn_discharge = new System.Windows.Forms.Button();
+            this.lbl_ward_count = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid_patient_ward)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,12 +62,12 @@
             this.grid_patient_ward.Location = new System.Drawing.Point(12, 166);
             this.grid_patient_ward.Name = "grid_patient_ward";
             this.grid_patient_ward.RowTemplate.Height = 28;
-            this.grid_patient_ward.Size = new System.Drawing.Size(664, 289);
+            this.grid_patient_ward.Size = new System.Drawing.Size(1631, 289);
             this.grid_patient_ward.TabIndex = 2;
             // 
             // btn_discharge
             // 
-            this.btn_discharge.Location = new System.Drawing.Point(537, 102);
+            this.btn_discharge.Location = new System.Drawing.Point(1504, 102);
             this.btn_discharge.Name = "btn_discharge";
             this.btn_discharge.Size = new System.Drawing.Size(139, 58);
             this.btn_discharge.TabIndex = 3;
@@ -73,11 +75,31 @@
             this.btn_discharge.UseVisualStyleBackColor = true;
             this.btn_discharge.Click += new System.EventHandler(this.btn_discharge_Click);
             // 
+            // lbl_ward_count
+            // 
+            this.lbl_ward_count.AutoSize = true;
+            this.lbl_ward_count.Location = new System.Drawing.Point(139, 102);
+            this.lbl_ward_count.Name = "lbl_ward_count";
+            this.lbl_ward_count.Size = new System.Drawing.Size(49, 20);
+            this.lbl_ward_count.TabIndex = 4;
+            this.lbl_ward_count.Text = "count";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 102);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(121, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Patients in ward";
+            // 
             // ui_nurse_landing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 467);
+            this.ClientSize = new System.Drawing.Size(1655, 467);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbl_ward_count);
             this.Controls.Add(this.btn_discharge);
             this.Controls.Add(this.grid_patient_ward);
             this.Controls.Add(this.lbl_nurse_ward);
@@ -96,5 +118,7 @@
         private System.Windows.Forms.Label lbl_nurse_ward;
         private System.Windows.Forms.DataGridView grid_patient_ward;
         private System.Windows.Forms.Button btn_discharge;
+        private System.Windows.Forms.Label lbl_ward_count;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -12,7 +12,7 @@ namespace HMS
 {
     public partial class ui_nurse_landing : Form
     {
-        String n_id, name, ward;
+        String n_id, name, ward, wardcount="0";
         DataTable dataTable;
 
         private void btn_discharge_Click(object sender, EventArgs e)
@@ -26,6 +26,7 @@ namespace HMS
                 if (dialogResult == DialogResult.OK)
                 {
                     DBhelper.discharge(dischargedPatient, ward);
+                    lbl_ward_count.Text = (int.Parse(lbl_ward_count.Text) - 1).ToString();
                     loadPatients();
                 }
             }
@@ -41,6 +42,7 @@ namespace HMS
             ward = dataRow["WNAME"].ToString();
             lbl_nurse_name.Text = name;
             lbl_nurse_ward.Text = ward;
+            lbl_ward_count.Text = wardcount + " patients in ward";
             this.Text = id;
             loadPatients();
         }
@@ -52,6 +54,8 @@ namespace HMS
             if (dataTable != null)
             {
                 grid_patient_ward.DataSource = dataTable;
+                int wardCount = grid_patient_ward.RowCount;
+                lbl_ward_count.Text = wardcount.ToString();
             }
         }
     }

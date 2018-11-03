@@ -105,20 +105,25 @@ namespace HMS
             {
                 DataRowView dataRowView = (DataRowView)list_dept.SelectedItem;
                 String dept = dataRowView["DEPTNAME"].ToString();
-                DBhelper.insert("insert into patient values('" + tb_pid.Text + "'," +
+                int insertPatientSuccess = DBhelper.insert("insert into patient values('" + tb_pid.Text + "'," +
                                 "'" + tb_name.Text + "'" +
                                 "," + tb_age.Text +"," +
                                 "'" + tb_symptom.Text + "'," +
                                 "'" + tb_occupation.Text + "'," +
                                 "0, 'admitted'," +
                                 "'" + dept + "')");
-                DBhelper.insert("insert into family_members values('" + tb_pid.Text + "'," +
+                int insertFamilySuccess = DBhelper.insert("insert into family_members values('" + tb_pid.Text + "'," +
                                 "'" + tb_family.Text + "'," +
                                 "'" + tb_relation.Text + "')");
-                DBhelper.insert("insert into appointment values ('" + tb_pid.Text + "'," +
+                int insertAppointmentSuccess = DBhelper.insert("insert into appointment values ('" + tb_pid.Text + "'," +
                                 "'" + r_id + "'," +
                                 "date '" + DateTime.Now.ToString("yyyy-MM-dd") + "')");
-                DBhelper.assign_doc(tb_pid.Text);
+                int assignDocSuccess = DBhelper.assign_doc(tb_pid.Text);
+                int addpatientSuccess = DBhelper.execute("add_patient_queue");
+                if (insertPatientSuccess==0 && insertFamilySuccess==0 && insertAppointmentSuccess==0 && assignDocSuccess==0 && addpatientSuccess ==0)
+                {
+                    this.Close();
+                }
             }
         }
     }

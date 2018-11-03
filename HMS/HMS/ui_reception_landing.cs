@@ -31,6 +31,27 @@ namespace HMS
             new ui_add_patient(r_id, name).Show();
         }
 
+        private void btn_avail_doc_Click(object sender, EventArgs e)
+        {
+            DBhelper.execute("display_available_doctor");
+            dataTable = DBhelper.read("select d_id,deptname from doctor where d_id not in (select d_id from doc_patient)");
+            string res = string.Join(Environment.NewLine, dataTable.Rows.OfType<DataRow>().Select(x => string.Join(" ; ", x.ItemArray)));
+            MessageBox.Show(res);
+        }
+
+        private void btn_bill_Click(object sender, EventArgs e)
+        {
+            if (grid_patient_reception.SelectedCells.Count > 0)
+            {
+                int selectedrowindex = grid_patient_reception.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = grid_patient_reception.Rows[selectedrowindex];
+                string patient = Convert.ToString(selectedRow.Cells["ID"].Value);
+                dataTable = DBhelper.read("select * from administration where p_id='" + patient + "'");
+                string res = string.Join(Environment.NewLine, dataTable.Rows.OfType<DataRow>().Select(x => string.Join(" ; ", x.ItemArray)));
+                MessageBox.Show(res);
+            }
+        }
+
         void loadPatients()
         {
             dataTable = DBhelper.read("select patient.p_id as ID,pname as NAME,age,symptoms,occupation,num_of_days_admitted as STAY,appoint_date as APPOINTMENT_DATE,wname as WARD,status " +

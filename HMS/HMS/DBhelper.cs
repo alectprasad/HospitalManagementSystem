@@ -87,7 +87,7 @@ namespace HMS
             return dataTable;
         }
 
-        public static void insert(String command)
+        public static int insert(String command)
         {
             try {
                 conn = new OracleConnection(connectionString);
@@ -96,10 +96,45 @@ namespace HMS
                 comm.Connection = conn;
                 comm.CommandType = CommandType.Text;
                 comm.ExecuteNonQuery();
-                MessageBox.Show("Insertion successfull");
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); return -1; }
             finally { conn.Dispose(); }
+            return 0;
+        }
+
+        public static int update(String command)
+        {
+            try
+            {
+                conn = new OracleConnection(connectionString);
+                conn.Open();
+                comm = new OracleCommand { CommandText = command };
+                comm.Connection = conn;
+                comm.CommandType = CommandType.Text;
+                comm.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); return -1; }
+            finally { conn.Dispose(); }
+            return 0;
+        }
+
+        public static int execute(String proc)
+        {
+            try
+            {
+                conn = new OracleConnection(connectionString);
+                conn.Open();
+                comm = new OracleCommand(proc, conn);
+                comm.CommandText = proc;
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.ExecuteNonQuery();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); return -1;}
+            finally
+            {
+                conn.Dispose();
+            }
+            return 0;
         }
 
         public static void discharge(String pid, String ward)
@@ -116,7 +151,7 @@ namespace HMS
             }
             catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
             finally { conn.Dispose();
-                MessageBox.Show("success"); }
+                MessageBox.Show(pid + " discharged"); }
         }
 
         public static void discharge_doc(String pid, String dept)
@@ -136,11 +171,11 @@ namespace HMS
             finally
             {
                 conn.Dispose();
-                MessageBox.Show("success");
+                MessageBox.Show(pid + " discharged");
             }
         }
 
-        public static void assign_doc(String pid)
+        public static int assign_doc(String pid)
         {
             try
             {
@@ -152,12 +187,12 @@ namespace HMS
                 comm.Parameters.Add("pid", OracleDbType.Varchar2).Value = pid;
                 comm.ExecuteNonQuery();
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); }
+            catch (Exception ex) { MessageBox.Show(ex.Message.ToString()); return -1; }
             finally
             {
                 conn.Dispose();
-                MessageBox.Show("success");
             }
+            return 0;
         }
     }
 }
